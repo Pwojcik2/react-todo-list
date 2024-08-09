@@ -15,11 +15,20 @@ export const TodoWrapper = () => {
     ]);
     console.log(todos);
   };
+
+  const toggleComplete = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  };
+
   return (
     <div className="TodoWrapper">
       <TodoForm addTodo={addTodo} />
       {todos.map((todo, index) => (
-        <ToDo task={todo} key={index} />
+        <ToDo task={todo} key={index} toggleComplete={toggleComplete} />
       ))}
     </div>
   );
